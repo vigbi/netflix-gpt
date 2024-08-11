@@ -3,13 +3,11 @@ import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase"
-import { useNavigate } from 'react-router-dom';
 import { updateProfile } from "firebase/auth";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -32,7 +30,6 @@ const Login = () => {
           updateProfile(user)
             .then(() => {
               // Profile updated!
-              navigate("/browse");
             }).catch((error) => {
               // An error occurred
               setErrorMessage(error.message);
